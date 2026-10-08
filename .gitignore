@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+
+# MLflow
+mlruns/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Secrets
+.env
