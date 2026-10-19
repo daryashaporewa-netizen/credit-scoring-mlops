@@ -1,17 +1,18 @@
-numpy
-pandas
-scikit-learn
-matplotlib
-joblib
+numpy==2.5.3
+pandas==3.0.6
+scikit-learn==1.9.1
+matplotlib==3.11.2
+joblib==1.6.0
 
-great-expectations
-pytest
+great_expectations==1.24.0
+pytest==9.1.1
 
-mlflow
-dvc
+mlflow==3.17.0
+dvc==3.67.1
 
-fastapi
-uvicorn
+fastapi==0.143.0
+pydantic==2.14.0
+uvicorn==0.54.0
 
-black
-flake8
+black==26.10.1
+flake8==7.4.1
