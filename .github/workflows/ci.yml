@@ -29,7 +29,7 @@ jobs:
         run: flake8 src tests
 
       - name: Run unit tests
-        run: pytest tests/test_features.py -v
+        run: python -m pytest tests/test_features.py -v
 
       - name: Validate data with Great Expectations
-        run: pytest tests/test_validation.py -v
+        run: python -m pytest tests/test_validation.py -v
