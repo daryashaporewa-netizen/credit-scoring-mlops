@@ -5,7 +5,6 @@ from sklearn.model_selection import train_test_split
 from src.data.validation import validate_data
 from src.features.build_features import build_features
 
-
 project_root = Path(__file__).resolve().parents[2]
 
 raw_path = project_root / "data" / "raw" / "UCI_Credit_Card.csv"

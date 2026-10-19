@@ -8,24 +8,32 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 def create_pipeline(numeric_features, categorical_features):
     """Создаёт pipeline предобработки данных и обучения модели."""
 
-    numeric_transformer = Pipeline([
-        ("imputer", SimpleImputer(strategy="median")),
-        ("scaler", StandardScaler()),
-    ])
+    numeric_transformer = Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+        ]
+    )
 
-    categorical_transformer = Pipeline([
-        ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("onehot", OneHotEncoder(handle_unknown="ignore")),
-    ])
+    categorical_transformer = Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="most_frequent")),
+            ("onehot", OneHotEncoder(handle_unknown="ignore")),
+        ]
+    )
 
-    preprocessor = ColumnTransformer([
-        ("num", numeric_transformer, numeric_features),
-        ("cat", categorical_transformer, categorical_features),
-    ])
+    preprocessor = ColumnTransformer(
+        [
+            ("num", numeric_transformer, numeric_features),
+            ("cat", categorical_transformer, categorical_features),
+        ]
+    )
 
-    pipeline = Pipeline([
-        ("preprocessor", preprocessor),
-        ("classifier", GradientBoostingClassifier(random_state=42)),
-    ])
+    pipeline = Pipeline(
+        [
+            ("preprocessor", preprocessor),
+            ("classifier", GradientBoostingClassifier(random_state=42)),
+        ]
+    )
 
     return pipeline

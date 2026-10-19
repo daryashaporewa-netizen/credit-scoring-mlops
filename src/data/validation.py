@@ -73,12 +73,8 @@ def validate_data(df):
 
     # Подключаем DataFrame к Great Expectations
     data_source = context.data_sources.add_pandas("credit_data")
-    data_asset = data_source.add_dataframe_asset(
-        name="credit_card_data"
-    )
-    batch_definition = data_asset.add_batch_definition_whole_dataframe(
-        "full_dataset"
-    )
+    data_asset = data_source.add_dataframe_asset(name="credit_card_data")
+    batch_definition = data_asset.add_batch_definition_whole_dataframe("full_dataset")
 
     # Создаём единый набор правил
     suite = gx.ExpectationSuite(name="credit_data_suite")
@@ -95,9 +91,7 @@ def validate_data(df):
     # Проверяем отсутствие пропусков
     for column in required_columns:
         suite.add_expectation(
-            gx.expectations.ExpectColumnValuesToNotBeNull(
-                column=column
-            )
+            gx.expectations.ExpectColumnValuesToNotBeNull(column=column)
         )
 
     # Проверяем типы данных
@@ -143,16 +137,13 @@ def validate_data(df):
         suite=suite,
     )
 
-    validation_definition = context.validation_definitions.add(
-        validation_definition
-    )
+    validation_definition = context.validation_definitions.add(validation_definition)
 
     # Запускаем все проверки одной общей валидацией
-    validation_result = validation_definition.run(
-        batch_parameters={"dataframe": df}
-    )
+    validation_result = validation_definition.run(batch_parameters={"dataframe": df})
 
     return validation_result.success
+
 
 if __name__ == "__main__":
     # Загружаем исходный датасет

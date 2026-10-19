@@ -20,7 +20,6 @@ from sklearn.model_selection import GridSearchCV
 
 from src.models.pipeline import create_pipeline
 
-
 project_root = Path(__file__).resolve().parents[2]
 data_path = project_root / "data" / "processed"
 
@@ -136,9 +135,7 @@ def main():
     y_test = test[target]
 
     numeric_features = [
-        column
-        for column in X_train.columns
-        if column not in categorical_features
+        column for column in X_train.columns if column not in categorical_features
     ]
 
     # GridSearchCV для Gradient Boosting
@@ -231,13 +228,15 @@ def main():
         }
 
     # Сохраняем результаты всех экспериментов
-    results_table = pd.DataFrame([
-        {
-            "model": name,
-            **result["metrics"],
-        }
-        for name, result in results.items()
-    ])
+    results_table = pd.DataFrame(
+        [
+            {
+                "model": name,
+                **result["metrics"],
+            }
+            for name, result in results.items()
+        ]
+    )
 
     results_table.to_csv(
         project_root / "experiment_results.csv",

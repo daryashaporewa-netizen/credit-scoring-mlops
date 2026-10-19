@@ -31,14 +31,10 @@ def build_features(df):
     ]
 
     # Средняя доля использованного кредитного лимита
-    df["AVG_UTILIZATION"] = (
-        df[bill_columns].mean(axis=1) / df["LIMIT_BAL"]
-    )
+    df["AVG_UTILIZATION"] = df[bill_columns].mean(axis=1) / df["LIMIT_BAL"]
 
     # Средний размер платежа относительно кредитного лимита
-    df["AVG_PAYMENT_RATIO"] = (
-        df[payment_columns].mean(axis=1) / df["LIMIT_BAL"]
-    )
+    df["AVG_PAYMENT_RATIO"] = df[payment_columns].mean(axis=1) / df["LIMIT_BAL"]
 
     # Максимальная просрочка за последние шесть месяцев
     df["MAX_DELAY"] = df[delay_columns].max(axis=1)
